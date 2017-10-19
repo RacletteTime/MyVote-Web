@@ -14,6 +14,7 @@ public class Proposal {
     private Choice[] choices;
     private ProposalState state;
     private Choice choiceWin;
+    private Integer totalVotes;
     private enum VoteType {
         REFERENDUM,
         ELECTION,
@@ -86,5 +87,17 @@ public class Proposal {
 
     public Boolean isOnGoing() {
         return getState().equals(ProposalState.ONGOING);
+    }
+
+    public Boolean isEnded() {
+        return getState().equals(ProposalState.ENDED);
+    }
+
+    public Integer getTotalVotes() {
+        return totalVotes;
+    }
+
+    public void setTotalVotes(Integer totalVotes) {
+        this.totalVotes = totalVotes;
     }
 }

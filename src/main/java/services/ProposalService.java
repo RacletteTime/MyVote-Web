@@ -1,5 +1,6 @@
 package main.java.services;
 
+import main.java.beans.Choice;
 import main.java.beans.Proposal;
 
 import java.util.ArrayList;
@@ -26,5 +27,21 @@ public class ProposalService extends Service {
             }
             return onGoingProposals;
         }
+    }
+
+    public Proposal getById(String id) {
+        Proposal proposal = (Proposal) parseJsonToBean(getUrl(PROPOSAL_URL + id), Proposal.class);
+
+        Integer totalVotes = 0;
+        for (Choice choice : proposal.getChoices()) {
+            totalVotes += Integer.valueOf(choice.getNbVotes());
+        }
+        proposal.setTotalVotes(totalVotes);
+
+        for (Choice choice : proposal.getChoices()) {
+            choice.setPercentage(Integer.valueOf(choice.getNbVotes()) / proposal.getTotalVotes() * 100);
+        }
+
+        return proposal;
     }
 }

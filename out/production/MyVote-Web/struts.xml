@@ -6,6 +6,16 @@
 
 <struts>
     <package name="default" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="main.java.interceptors.LoginInterceptor" />
+        </interceptors>
+
+        <global-results>
+            <result name="NOT_LOGGED" type="redirect">
+                <param name="location">login</param>
+            </result>
+        </global-results>
+
         <action name="login">
             <result>pages/login.jsp</result>
         </action>
@@ -20,7 +30,24 @@
         </action>
 
         <action name="proposals" class="main.java.actions.ProposalActions" method="displayProposals">
+            <interceptor-ref name="loginInterceptor" />
             <result name="SUCCESS">pages/proposals.jsp</result>
+        </action>
+
+        <action name="proposal" class="main.java.actions.ProposalActions" method="displayProposal">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="SUCCESS">pages/proposal.jsp</result>
+        </action>
+
+        <action name="vote" class="main.java.actions.VoteActions" method="vote">
+            <interceptor-ref name="loginInterceptor" />
+            <result name="SUCCESS" type="redirect">
+                <param name="location">proposals</param>
+            </result>
+            <result name="FAILURE" type="redirect">
+                <param name="location">proposal</param>
+                <param name="id">${proposal}</param>
+            </result>
         </action>
     </package>
 </struts>

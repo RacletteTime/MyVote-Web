@@ -1,5 +1,6 @@
 package main.java.services;
 
+import com.opensymphony.xwork2.ActionContext;
 import main.java.beans.Submitter;
 import main.java.beans.User;
 import main.java.beans.Voter;
@@ -11,6 +12,16 @@ import java.net.URL;
  */
 public class UserService extends Service {
     public User login(String email, String password) {
+        User user = getByEmail(email);
+
+        if (user != null && password.equals(user.getPassword())) {
+            return user;
+        } else {
+            return null;
+        }
+    }
+
+    public User getByEmail(String email) {
         User user = null;
 
         URL url = getUrl(VoterService.VOTER_URL + email);
@@ -28,10 +39,11 @@ public class UserService extends Service {
             }
         }
 
-        if (user != null && password.equals(user.getPassword())) {
-            return user;
-        } else {
-            return null;
-        }
+        return user;
+    }
+
+    public User getCurrentUser() {
+        UserService userService = new UserService();
+        return userService.getByEmail((String) ActionContext.getContext().getSession().get("user"));
     }
 }

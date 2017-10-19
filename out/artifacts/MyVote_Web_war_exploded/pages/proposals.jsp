@@ -12,7 +12,7 @@
     <h1>MyVote</h1>
     <div class="list-group">
     <c:forEach items="${onGoingProposals}" var="prop">
-        <a href="#" class="list-group-item">
+        <a href="proposal?id=${prop.id}" class="list-group-item">
             <h4 class="list-group-item-heading">${prop.libelle}</h4>
             <p class="list-group-item-text">
             <c:forEach items="${prop.choices}" var="choice">

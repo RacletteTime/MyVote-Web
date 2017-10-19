@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Choice {
     private String id;
     private String libelle;
+    private String nbVotes;
+    private Integer percentage;
 
     public Choice(String id, String libelle) {
         this.id = id;
@@ -33,5 +35,21 @@ public class Choice {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public String getNbVotes() {
+        return nbVotes;
+    }
+
+    public void setNbVotes(String nbVotes) {
+        this.nbVotes = nbVotes;
+    }
+
+    public Integer getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Integer percentage) {
+        this.percentage = percentage;
     }
 }

@@ -1,8 +1,12 @@
 package main.java.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.actions.Action;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.DataOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -47,6 +51,32 @@ public abstract class Service {
             e.printStackTrace();
         } finally {
             return o;
+        }
+    }
+
+    public String postBean(URL url, Object o) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            String params = objectMapper.writeValueAsString(o);
+
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);
+
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.writeBytes(params);
+            wr.flush();
+            wr.close();
+
+            if (con.getResponseCode() == 200) {
+                return Action.SUCCESS;
+            }
+            else {
+                return Action.FAILURE;
+            }
+        } catch (Exception e) {
+            return Action.FAILURE;
         }
     }
 }
