@@ -14,11 +14,9 @@
     <c:forEach items="${onGoingProposals}" var="prop">
         <a href="proposal?id=${prop.id}" class="list-group-item">
             <h4 class="list-group-item-heading">${prop.libelle}</h4>
-            <p class="list-group-item-text">
             <c:forEach items="${prop.choiceItems}" var="choice">
                 <li>${choice.libelle}</li>
             </c:forEach>
-            </p>
         </a>
     </c:forEach>
     </div>
@@ -27,11 +25,9 @@
         <c:forEach items="${endedProposals}" var="prop">
             <div class="list-group-item">
                 <h4 class="list-group-item-heading">${prop.libelle}</h4>
-                <p class="list-group-item-text">
                 <c:forEach items="${prop.choiceItems}" var="choice">
                     <li>${choice.libelle} - ${choice.percentage}%</li>
                 </c:forEach>
-                </p>
             </div>
         </c:forEach>
     </div>
