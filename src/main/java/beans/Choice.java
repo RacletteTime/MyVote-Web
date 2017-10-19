@@ -1,9 +1,12 @@
 package main.java.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by pierre on 18/10/2017.
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Choice {
     private String id;
     private String libelle;
@@ -11,6 +14,9 @@ public class Choice {
     public Choice(String id, String libelle) {
         this.id = id;
         this.libelle = libelle;
+    }
+
+    public Choice() {
     }
 
     public String getId() {

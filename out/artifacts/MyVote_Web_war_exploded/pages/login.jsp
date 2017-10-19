@@ -28,6 +28,6 @@
     </div>
   </div>
 </s:form>
-</div>=
+</div>
 </body>
 </html>

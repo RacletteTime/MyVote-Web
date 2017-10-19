@@ -1,9 +1,12 @@
 package main.java.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by pierre on 18/10/2017.
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Proposal {
     private String id;
     private VoteType type;
@@ -28,6 +31,9 @@ public class Proposal {
         this.choices = choices;
         this.state = state;
         this.choiceWin = choiceWin;
+    }
+
+    public Proposal() {
     }
 
     public String getId() {
@@ -76,5 +82,9 @@ public class Proposal {
 
     public void setChoiceWin(Choice choiceWin) {
         this.choiceWin = choiceWin;
+    }
+
+    public Boolean isOnGoing() {
+        return getState().equals(ProposalState.ONGOING);
     }
 }

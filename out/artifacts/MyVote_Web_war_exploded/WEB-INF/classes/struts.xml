@@ -12,15 +12,15 @@
 
         <action name="login-execute" class="main.java.actions.UserActions" method="loginExecute">
             <result name="SUCCESS" type="redirect">
-                <param name="location">votes</param>
+                <param name="location">proposals</param>
             </result>
             <result name="FAILURE" type="redirect">
                 <param name="location">login</param>
             </result>
         </action>
 
-        <action name="votes">
-            <result>pages/votes.jsp</result>
+        <action name="proposals" class="main.java.actions.ProposalActions" method="displayProposals">
+            <result name="SUCCESS">pages/proposals.jsp</result>
         </action>
     </package>
 </struts>
