@@ -2,6 +2,8 @@ package main.java.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 /**
  * Created by pierre on 18/10/2017.
  */
@@ -11,7 +13,8 @@ public class Proposal {
     private String id;
     private VoteType type;
     private String libelle;
-    private Choice[] choices;
+    private String[] choices;
+    private List<Choice> choiceItems;
     private ProposalState state;
     private Choice choiceWin;
     private Integer totalVotes;
@@ -25,7 +28,7 @@ public class Proposal {
         ENDED
     }
 
-    public Proposal(String id, VoteType type, String libelle, Choice[] choices, ProposalState state, Choice choiceWin) {
+    public Proposal(String id, VoteType type, String libelle, String[] choices, ProposalState state, Choice choiceWin) {
         this.id = id;
         this.type = type;
         this.libelle = libelle;
@@ -61,12 +64,20 @@ public class Proposal {
         this.libelle = libelle;
     }
 
-    public Choice[] getChoices() {
+    public String[] getChoices() {
         return choices;
     }
 
-    public void setChoices(Choice[] choices) {
+    public void setChoices(String[] choices) {
         this.choices = choices;
+    }
+
+    public List<Choice> getChoiceItems() {
+        return choiceItems;
+    }
+
+    public void setChoiceItems(List<Choice> choiceItems) {
+        this.choiceItems = choiceItems;
     }
 
     public ProposalState getState() {

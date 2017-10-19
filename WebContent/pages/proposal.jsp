@@ -16,7 +16,7 @@
     <c:if test="${proposal.isOnGoing()}">
         <s:form action="vote">
             <input type="hidden" name="proposal" value="${proposal.id}"/>
-            <c:forEach items="${proposal.choices}" var="choice">
+            <c:forEach items="${proposal.choiceItems}" var="choice">
                 <div class="form-group">
                     <input type="radio" name="choice" value="${choice.id}"> ${choice.libelle} </input>
                 </div>
@@ -25,7 +25,7 @@
         </s:form>
     </c:if>
     <c:if test="${proposal.isEnded()}">
-        <c:forEach items="${proposal.choices}" var="choice">
+        <c:forEach items="${proposal.choiceItems}" var="choice">
             <a class="list-group-item">
                 <h4 class="list-group-item-heading">${choice.libelle} - ${choice.percentage}</h4>
             </a>

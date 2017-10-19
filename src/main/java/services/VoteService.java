@@ -10,10 +10,11 @@ public class VoteService extends Service {
 
     public String vote(String proposal, String choice) {
         Vote vote = new Vote();
-        ChoiceService choiceService = new ChoiceService();
+        UserService userService = new UserService();
 
+        vote.setVoter(userService.getCurrentUser().getEmail());
         vote.setProposal(proposal);
-        vote.setChoice(choiceService.getById(choice));
+        vote.setChoice(choice);
 
         return postBean(getUrl(VOTE_URL), vote);
     }

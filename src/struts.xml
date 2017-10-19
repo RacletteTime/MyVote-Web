@@ -45,8 +45,7 @@
                 <param name="location">proposals</param>
             </result>
             <result name="FAILURE" type="redirect">
-                <param name="location">proposal</param>
-                <param name="id">${proposal}</param>
+                <param name="location">proposals</param>
             </result>
         </action>
     </package>

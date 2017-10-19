@@ -15,12 +15,25 @@
         <a href="proposal?id=${prop.id}" class="list-group-item">
             <h4 class="list-group-item-heading">${prop.libelle}</h4>
             <p class="list-group-item-text">
-            <c:forEach items="${prop.choices}" var="choice">
-            <li>${choice.libelle}</li>
+            <c:forEach items="${prop.choiceItems}" var="choice">
+                <li>${choice.libelle}</li>
             </c:forEach>
             </p>
         </a>
     </c:forEach>
+    </div>
+    <br/>
+    <div class="list-group">
+        <c:forEach items="${endedProposals}" var="prop">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">${prop.libelle}</h4>
+                <p class="list-group-item-text">
+                <c:forEach items="${prop.choiceItems}" var="choice">
+                    <li>${choice.libelle} - ${choice.percentage}%</li>
+                </c:forEach>
+                </p>
+            </div>
+        </c:forEach>
     </div>
 </div>
 </body>

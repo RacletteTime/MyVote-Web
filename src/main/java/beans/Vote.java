@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Vote {
     String proposal;
-    Choice choice;
-    String userInfos;
+    String choice;
+    String voter;
 
     public String getProposal() {
         return proposal;
@@ -20,19 +20,19 @@ public class Vote {
         this.proposal = proposal;
     }
 
-    public Choice getChoice() {
+    public String getChoice() {
         return choice;
     }
 
-    public void setChoice(Choice choice) {
+    public void setChoice(String choice) {
         this.choice = choice;
     }
 
-    public String getUserInfos() {
-        return userInfos;
+    public String getVoter() {
+        return voter;
     }
 
-    public void setUserInfos(String userInfos) {
-        this.userInfos = userInfos;
+    public void setVoter(String voter) {
+        this.voter = voter;
     }
 }

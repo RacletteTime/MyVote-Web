@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import main.java.beans.Proposal;
 import main.java.services.ProposalService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,8 @@ import java.util.List;
  */
 public class ProposalActions extends Action {
     public List<Proposal> onGoingProposals;
+
+    public List<Proposal> endedProposals;
 
     public Proposal proposal;
 
@@ -20,6 +23,14 @@ public class ProposalActions extends Action {
 
     public void setOnGoingProposals(List<Proposal> onGoingProposals) {
         this.onGoingProposals = onGoingProposals;
+    }
+
+    public List<Proposal> getEndedProposals() {
+        return endedProposals;
+    }
+
+    public void setEndedProposals(List<Proposal> endedProposals) {
+        this.endedProposals = endedProposals;
     }
 
     public Proposal getProposal() {
@@ -32,7 +43,17 @@ public class ProposalActions extends Action {
 
     public String displayProposals() {
         ProposalService proposalService = new ProposalService();
-        setOnGoingProposals(proposalService.getOnGoingProposals());
+        onGoingProposals = new ArrayList<>();
+        endedProposals = new ArrayList<>();
+
+        for (Proposal proposal : proposalService.getProposals()) {
+            if (proposal.isOnGoing()) {
+                onGoingProposals.add(proposal);
+            }
+            else if (proposal.isEnded()) {
+                endedProposals.add(proposal);
+            }
+        }
 
         return SUCCESS;
     }

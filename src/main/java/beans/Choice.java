@@ -11,7 +11,7 @@ public class Choice {
     private String id;
     private String libelle;
     private String nbVotes;
-    private Integer percentage;
+    private Double percentage;
 
     public Choice(String id, String libelle) {
         this.id = id;
@@ -45,11 +45,11 @@ public class Choice {
         this.nbVotes = nbVotes;
     }
 
-    public Integer getPercentage() {
+    public Double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(Integer percentage) {
+    public void setPercentage(Double percentage) {
         this.percentage = percentage;
     }
 }

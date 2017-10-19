@@ -9,6 +9,6 @@ public class ChoiceService extends Service {
     public static final String CHOICE_URL = BASE_URL + "org.acme.bc.vote.Choice/";
 
     public Choice getById(String id) {
-        return (Choice) parseJsonToBean(getUrl(CHOICE_URL + id), Choice.class);
+        return (Choice) parseJsonToBean(getUrl(CHOICE_URL + id.split("#")[1]), Choice.class);
     }
 }
