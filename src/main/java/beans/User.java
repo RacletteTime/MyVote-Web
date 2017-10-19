@@ -1,12 +1,18 @@
 package main.java.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
 /**
  * Created by pierre on 18/10/2017.
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
+    public static final String VOTER_TYPE = "voter";
+    public static final String SUBMITTER_TYPE = "submitter";
+
     private String email;
     private String password;
     private String firstName;
@@ -16,6 +22,7 @@ public class User {
     private String birthdate;
     private String gender;
     private String nationality;
+    private String type;
 
     public String getEmail() {
         return email;
@@ -87,5 +94,13 @@ public class User {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

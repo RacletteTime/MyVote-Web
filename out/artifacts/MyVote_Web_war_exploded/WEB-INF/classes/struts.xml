@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="login">
+            <result>pages/login.jsp</result>
+        </action>
+
+        <action name="login-execute" class="main.java.actions.UserActions" method="loginExecute">
+            <result name="SUCCESS" type="redirect">
+                <param name="location">votes</param>
+            </result>
+            <result name="FAILURE" type="redirect">
+                <param name="location">login</param>
+            </result>
+        </action>
+
+        <action name="votes">
+            <result>pages/votes.jsp</result>
+        </action>
+    </package>
+</struts>
